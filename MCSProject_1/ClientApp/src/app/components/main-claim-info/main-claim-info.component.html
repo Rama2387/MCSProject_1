@@ -1,0 +1,151 @@
+<div class="">
+  <section>
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+          <mat-icon>home</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+          <mat-icon>home</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="border-bottom">
+  <!-- row-1 -->
+  <div class="d-flex m-2 justify-content-between">
+    <form [formGroup]="claimSearchForm" (ngSubmit)="passClaimIdToChild_MoreClaimInfo()">
+      <div class="d-flex align-items-center">
+        <b class="m-2">Claim Number:</b>
+        <div class="input-field"
+          [class.error]="formSubmitted && claimSearchForm.get('claimId')?.invalid && claimSearchForm.get('claimId')?.errors?.['required']">
+          <input type="text" class="form-control " formControlName="claimId" />
+
+        </div>
+        <mat-icon>submit</mat-icon>
+        <button type="submit" class="btn btn-primary searchButton" [disabled]="claimSearchForm.invalid"
+          style="padding-top: inherit;">search</button>
+        <b class="m-2">Member:</b>
+        <input readonly class="form-control" />
+      </div>
+
+    </form>
+    <div class="d-flex align-items-center">
+      <div class="d-flex flex-grow-1 me-2">
+        <div>Type: <b>HCFA</b></div>
+      </div>
+      <div class="d-flex border" style="border-radius: 3px;">
+        <mat-select [(value)]="selectedOption" [disabled]="false" (selectionChange)="onOptionSelectionChange($event)"
+          class="custom-mat-select">
+          <mat-option value="">Select Type</mat-option>
+          <mat-option [value]="option.value" *ngFor="let option of ddTypes">{{ option.viewValue }}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- row-2 -->
+
+  <div class="ms-2 me-2 d-flex justify-content-between">
+    <div class="date">
+      Date :
+      <b>
+        {{ todays_date | date }}
+      </b>
+    </div>
+
+    <div>
+      PCP :
+
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="me-3">
+        Doc : <b>543213</b>
+
+      </div>
+      <div class="ms-2">
+        Paid : <b>13.5</b>
+
+      </div>
+    </div>
+  </div>
+  <!-- row-3 -->
+  <div class="ms-2 me-2 d-flex justify-content-between">
+    <div class="">
+      LOB :
+      <b>
+        Medicaid
+      </b>
+    </div>
+
+    <div>
+      CC:
+
+    </div>
+    <div>
+      Enc En:
+
+    </div>
+    <div class="d-flex align-items-center">
+
+      <div class="ms-2">
+        Payment method : <b>card</b>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- row-3 -->
+  <!-- <mat-tab-group fitInkBarToContent>
+      <mat-tab label="First">Content 1</mat-tab>
+      <mat-tab label="Second">Content 2</mat-tab>
+      <mat-tab label="Third">Content 3</mat-tab>
+      <mat-tab label="Fourth" disabled>Content 4</mat-tab>
+    </mat-tab-group> -->
+  <div class="d-flex justify-content-between">
+    <div class="m-3"><b>Paid</b></div>
+
+    <div class="d-flex align-items-center">
+      <div class="example-button-row p-0">
+        <button style="margin: 3px;" mat-raised-button>Basic</button>
+        <button style="margin: 3px;" mat-raised-button color="primary">Forward</button>
+        <button style="margin: 3px;" mat-raised-button color="accent">Reverse</button>
+        <button style="margin: 3px;" mat-raised-button disabled>Deny Claim</button>
+        <button style="margin: 3px;" mat-raised-button color="warn">Lock</button>
+        <button style="margin: 3px;" mat-raised-button disabled>Hold</button>
+        <button style="margin: 3px;" mat-raised-button disabled>Adjudicate</button>
+        <button style="margin: 3px;" mat-raised-button color="primary">View Claims</button>
+        <button style="margin: 3px;" mat-raised-button color="primary">Edit</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-more-calim-info [claimId]="claimId" *ngIf="selectedOption === 'Header' && formSubmitted"></app-more-calim-info>
+<app-claim-details  *ngIf="selectedOption == 'Details'"></app-claim-details>

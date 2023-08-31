@@ -1,0 +1,140 @@
+
+.txtBox {
+  max-width: 200px;
+  
+}
+input {
+  height: 25px;
+}
+p {
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 150px;
+  text-align: end;
+
+}
+
+
+.example-container {
+  height: 300px;
+  width: 550px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.table-mini1 {
+  width: 800px;
+}
+
+.table-mini2 {
+  width: 800px;
+  height: 50px !important;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}
+
+.mat-mdc-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-mdc-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}
+.mat-header-cell {
+  font-weight: bold;
+  background-color: rgb(113, 120, 183);
+}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+.example-section {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  gap: 16px; /* Space between items */
+}
+
+/* Adjust the width of the mat-select element if needed */
+.custom-mat-select {
+  flex: 1; /* Expand to fill available space */
+  border: 1px solid rgba(181, 178, 178, 0.92);
+  border-radius: 5px;
+}
+
+/* .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+} */
+
+.custom-form-field {
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  margin-left: 10px;
+  /* width: 300px; */
+}
+
+.fixed-label {
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  background-color: white;
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.POS {
+  max-width: 20px;
+}
+
+
+.small-column {
+  max-width: 10px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+}
+
+
+
+.table1 section{
+  margin-left: 60px ;
+ 
+ 
+  border: 1px solid #ccc;
+  padding-left: 10px; 
+}
+
+.table1_1 {
+ 
+
+  border-right: 1px solid #ccc;
+}
+
+
+
+
+

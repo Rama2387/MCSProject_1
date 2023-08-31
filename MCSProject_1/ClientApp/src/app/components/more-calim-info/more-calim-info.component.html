@@ -1,0 +1,410 @@
+<table class="table table-bordered border-primary mt-4">
+  <thead>
+    <tr class="bg-info">
+      <td>EntFirstName</td>
+      <td>ClmHdrRecLocator</td>
+      <td>ClaimNumber</td>
+      <td>ControlNumber</td>
+      <td>EntityType</td>
+      <td>EntSortOrder</td>
+      <!-- <td>Member Name</td>
+      <td>Provider Id</td>
+      <td>Provider Name</td>
+      <td>Vendor Name </td>
+      <td>Date Received</td>
+      <td class="text-danger">Total Charges</td>
+      <td class="text-danger">Paid Amount</td> -->
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="searchedClaim.length > 0">
+      <tr *ngFor="let claim of searchedClaim" class="table-active">
+        <td>
+          <a [routerLink]="'/claim-detail/' + claim.decClaimNumber" (click)="showMoreClaimDetail()">{{
+            claim.chEntFirstName }}</a>
+        </td>
+        <td>{{ claim.chClmHdrRecLocator }}</td>
+        <td>{{ claim.decClaimNumber }}</td>
+        <td>{{ claim.chControlNumber }}</td>
+        <td>{{ claim.chEntityType }}</td>
+        <td>{{ claim.intEntSortOrder }}</td>
+
+        <!-- <td>{{ claim.ProviderId }}</td>
+        <td>{{ claim.ProviderName }}</td>
+        <td>{{ claim.VendorName }}</td>
+        <td>{{ claim.DateReceived }}</td>
+        <td>{{ claim.TotalCharges }}</td>
+        <td>{{ claim.AmountPaid }}</td> -->
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="searchedClaim.length === 0">
+      <tr>
+        <td colspan="6" style="text-align: center">
+          No claims found in database
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<div class="container"  *ngFor="let searchedClaimHeader of searchedClaimHeaders"> 
+  <!-- row-1 -->
+  <div class="row">
+    <!-- col-1 -->
+    <div class="col-3">
+      <div class="d-flex">
+        <p>Claim Number:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>LOB:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Illness Date:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Disabled From:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+    </div>
+    <!-- col-2 -->
+
+    <div class="col-3">
+      <div class="d-flex">
+        <p><b>Member : First Name, Last Name</b></p>
+        <!-- <input type="text" class="form-control txtBox"/> -->
+      </div>
+      <div class="d-flex">
+        <p>From DOS:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>First Illness Date:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Disabled To:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Origin Ref #:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+    </div>
+    <!-- col-3 -->
+
+    <div class="col-3">
+      <div class="d-flex">
+        <p>DOB:</p>
+        <b>{{ currentDay | date : "yyyy-MM-dd" }}</b>
+      </div>
+      <div class="d-flex">
+        <p>Through DOS:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>LMP Data:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>Admit Date:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>Total Charges:</p>
+        <input type="text" disabled [value]="searchedClaimHeader.decTotalCharge" class="form-control txtBox" />
+      </div>
+    </div>
+    <!-- col-4 -->
+
+    <div class="col-3">
+      <div class="d-flex">
+        <p>Determination:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>Injury Date:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>Discharge Date:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Other Ins Pd:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>OI Claim Type:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+    </div>
+  </div>
+  <!-- row-2 -->
+  <div class="row">
+    <!-- col-1 -->
+    <div class="col-3" >
+      <div class="d-flex">
+        <p>Serv Prov:</p>
+        <input type="text" class="form-control txtBox" disabled [value]="searchedClaimHeader.chPrmSrvProviderId"/>
+      </div>
+
+      <div class="d-flex">
+        <p>Serv Loc:</p>
+        <input type="text" class="form-control txtBox" disabled [value]="searchedClaimHeader.chPrmSrvLoctionId" />
+        <!-- {{ searchedClaimHeader | json }} Debugging output -->
+      </div>
+      
+      
+      <div class="d-flex">
+        <p>Serv Taxnmy:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Facility NPI:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>Refer Prov:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+      <div class="d-flex">
+        <p>Vendor ID:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Vendor Loc:</p>
+        <input type="date" [value]="currentDay | date : 'yyyy-MM-dd'" disabled class="form-control txtBox" />
+      </div>
+      <div class="d-flex">
+        <p>Bill Taxnmy:</p>
+        <input type="text" class="form-control txtBox" />
+      </div>
+
+    </div>
+    <!-- col-2 -->
+    <div class="col-3">
+      <div class="d-flex">
+        <p><b>RAPCIAK,Yoscany</b></p>
+
+      </div>
+
+      <div class="d-flex">
+        <p style="height: 20px;"> </p>
+      </div>
+      <div class="d-flex">
+        <p style="height: 20px;"> </p>
+      </div>
+      <div class="d-flex">
+        <p style="height: 20px;"> </p>
+
+      </div>
+
+      <div class="d-flex">
+        <p><b>VASQUEZ-DOMINGO</b></p>
+      </div>
+
+      <div class="d-flex">
+        <p><b style="text-align: left;">CENTRAL ILLINOIS PATHOLOGY <br> PO Box 9190</b></p>
+      </div>
+      <div class="d-flex">
+        <p><b>PERORIA, Il 61612-9190</b></p>
+      </div>
+      <div class="d-flex">
+        <p style="height: 20px;"> </p>
+
+      </div>
+
+    </div>
+
+    <!-- col-3 to 4 -->
+    <div class="col-6 justify-content-end table1">
+      <div class="table1_1">
+        <section class="example-container mat-elevation-z8" tabindex="0">
+          <table class="table-mini1" mat-table [dataSource]="dataSource">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name" sticky>
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Weight </th>
+              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Symbol </th>
+              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+
+            <!-- Star Column -->
+            <ng-container matColumnDef="star" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon>more_vert</mat-icon>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+
+        </section>
+
+        <!-- <section class="d-flex flex-column justify-content-end">
+          <div class="checkbox-section mt-2">
+            <mat-checkbox class="example-margin" [disabled]="true">Show Removed</mat-checkbox>
+            <button style="margin: 10px;" mat-raised-button disabled>Update Authorizations</button>
+
+          </div>
+          <div>
+            <mat-button aria-disabled="true">Update</mat-button> 
+
+          </div>
+        </section> -->
+      </div>
+    </div>
+
+  </div>
+  <!-- row-3 -->
+  <div class="row mt-3">
+    <!-- col-1 to 2 -->
+    <div class="col-6 ">
+
+      <div class="row mb-2">
+        <div class="custom-form-field">
+          <label class="fixed-label">Condition Related To</label>
+          <!-- <div class="input-wrapper">
+      <input type="text" placeholder="Enter your name" />
+    </div> -->
+          <section class="example-section">
+            <mat-checkbox class="example-margin" [disabled]="true">Employment</mat-checkbox>
+            <mat-checkbox class="example-margin" [disabled]="true">Auto Accident</mat-checkbox>
+
+            <mat-label>State : </mat-label>
+            <mat-select [(value)]="selectedFood" (selectionChange)="onFoodSelectionChange($event)"
+              class="custom-mat-select">
+              <mat-option value="">Select state</mat-option>
+
+              <mat-option [value]="option.value" *ngFor="let option of foods">{{ option.viewValue }}</mat-option>
+            </mat-select>
+
+            <mat-checkbox class="example-margin" [disabled]="true">Other</mat-checkbox>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- row-4 -->
+      <div class="row">
+        <!-- col-1 -->
+        <div class="col-6">
+          <div class="d-flex">
+            <p>Fed Tax Id :</p>
+            <input type="text" class="form-control txtBox" />
+          </div>
+          <div class="d-flex">
+            <p>Pin Account#:</p>
+            <input type="text" class="form-control txtBox" />
+          </div>
+          <div class="d-flex">
+            <p>POS:</p>
+            <input type="text" class="form-control POS txtBox" />
+          </div>
+        </div>
+        <!-- col-2 -->
+
+        <div class="col-6">
+          <div class="d-flex">
+            <p>Resubmit code :</p>
+            <input type="text" class="form-control txtBox" />
+          </div>
+          <div class="d-flex">
+            <p>Patient Paid:</p>
+            <input type="text" class="form-control txtBox" />
+          </div>
+          <mat-checkbox style="text-align: end;" class="example-margin" [disabled]="false">Other Insurance
+          </mat-checkbox>
+
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- col-2 -->
+
+    <div class="col-6 justify-content-end table1">
+      <div class="table1_1">
+        <section class="example-container mat-elevation-z8" tabindex="0">
+          <table class="table-mini1" mat-table [dataSource]="dataSource1">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="No" sticky style="min-width: 20px !important;">
+              <th mat-header-cell *matHeaderCellDef>Diag Description </th>
+              <td mat-cell *matCellDef="let element" class="small-column"> {{element.position}} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+          </table>
+        </section>
+        <!-- <section class="d-flex flex-column justify-content-end m-0">
+          <button style="margin: 10px;" mat-raised-button disabled>Update Authorizations</button>
+        </section> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-2">
+    <div class="d-flex justify-content-between"> 
+        <section>
+            <div class="example-button-row">
+                <button style="margin: 10px;" mat-raised-button color="success">Update</button>
+                <button style="margin: 10px;" mat-raised-button color="primary">Appeal</button>
+            </div>
+        </section>
+        <section>
+            <div class="example-button-row d-flex justify-content-center">
+                <button style="margin: 10px;" mat-raised-button color="success">Event Summary</button>
+                <button style="margin: 10px;" mat-raised-button color="primary">Event History</button>
+            </div>
+        </section>
+        <section>
+            <div class="example-button-row d-flex justify-content-center">
+                <button style="margin: 10px;" mat-raised-button color="success">Help</button>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+</div>

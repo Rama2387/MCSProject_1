@@ -1,0 +1,26 @@
+.toolbar-item-spacer {
+  flex: 1 1 auto;
+}
+
+.app-container {
+  height: 100%;
+  margin: 0;
+}
+.app-sidenav {
+  width: 230px;
+}
+.app-autowidth{
+  width: auto;
+}
+.app-sidenavheight{
+  height:1000px;
+
+}
+.app-sidenav-content {
+  /* display: flex; */
+  /* height: 250%; */
+  align-items: center;
+  justify-content: center;
+  /* background-color: darkmagenta; */
+}
+

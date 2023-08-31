@@ -1,0 +1,65 @@
+.example-container {
+    height: 95px;
+    overflow: auto;
+
+}
+
+table {
+    width: 100%;
+    
+}
+
+td {
+    height: 20px !important;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    height: 20px;
+}
+
+tr.mat-header-row {
+    height: 30px;
+}
+
+tr:hover {
+    background: whitesmoke;
+}
+
+.txtBox {
+    min-width: 150px;
+
+}
+
+input {
+    height: 25px;
+}
+p {
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: 210px;
+    text-align: end;
+  
+  }
+.POS {
+    min-width: 75px;
+}
+.custom-form-field {
+    border: 1px solid #ccc;
+    padding: 15px;
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    /* margin-left: 5px; */
+    /* width: 300px; */
+  }
+  
+
+  .fixed-label {
+    position: absolute;
+    top: -12px;
+    left: 8px;
+    background-color: white;
+    padding: 0 4px;
+    font-weight: bold;
+  }

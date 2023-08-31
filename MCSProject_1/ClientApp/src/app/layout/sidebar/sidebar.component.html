@@ -1,0 +1,35 @@
+<mat-nav-list class="sidebar">
+
+  <mat-expansion-panel [class.mat-elevation-z0]="true">
+      <mat-expansion-panel-header>
+          CLAIMS
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/claims-edit" [ngStyle]="{'color': color === 'claims-edit' ? 'red' : ''}" (click)="selectedItem('claims-edit')">CLAIM EDIT</a>
+        <a mat-list-item routerLink="/claim-info" [ngStyle]="{'color': color === 'claims-reprocessing' ? 'red' : ''}" (click)="selectedItem('claims-reprocessing')">CLAIM REPROCESSING</a>
+        <a mat-list-item routerLink="/claim-info" [ngStyle]="{'color': color === 'claims-recoup' ? 'red' : ''}" (click)="selectedItem('claims-recoup')">CLAIM RECOUP</a>
+        <a mat-list-item routerLink="/claim-info" [ngStyle]="{'color': color === 'claims-maintenance' ? 'red' : ''}" (click)="selectedItem('claims-maintenance')">CLAIM MAINTENANCE</a>
+        <a mat-list-item routerLink="/claim-info" [ngStyle]="{'color': color === 'claims-appeal' ? 'red' : ''}" (click)="selectedItem('claims-appeal')">CLAIM APPEAL</a>
+      </mat-nav-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel [class.mat-elevation-z0]="true">
+      <mat-expansion-panel-header>
+          MEMBERS
+      </mat-expansion-panel-header>
+
+      <mat-nav-list>
+        <a mat-list-item routerLink="member-list" [ngStyle]="{'color': color === 'memberDetails' ? 'red' : ''}" (click)="selectedItem('memberDetails')">MEMBER DETAILS</a>
+        <a mat-list-item routerLink="member-survey" [ngStyle]="{'color': color === 'memberSurvey' ? 'red' : ''}" (click)="selectedItem('memberSurvey')">MEMBER SURVEY</a>
+      </mat-nav-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel [class.mat-elevation-z0]="true">
+      <mat-expansion-panel-header>
+          PROVIDERS
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+          <a mat-list-item routerLink="#">PROVIDER DETAILS</a>
+          <a mat-list-item routerLink="#">PROVIDER SERVICES</a>
+
+      </mat-nav-list>
+  </mat-expansion-panel>
+</mat-nav-list>
